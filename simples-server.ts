@@ -1,10 +1,21 @@
 import { ApolloServer, gql } from 'apollo-server';
 
+type User = {
+  name: string;
+};
+
 const typeDefs = gql`
   type Query {
     helloWorld: String!
+    users: [String!]!
+  }
+
+  type Mutation {
+    createUser(name: String!): String!
   }
 `;
+
+const users: string[] = [];
 
 const server = new ApolloServer({
   typeDefs,
@@ -12,6 +23,13 @@ const server = new ApolloServer({
     Query: {
       helloWorld: () => {
         return `Hello world!`;
+      },
+    },
+    Mutation: {
+      createUser: (parent, args, context: User) => {
+        console.log(args);
+
+        return users.push(args.name);
       },
     },
   },
