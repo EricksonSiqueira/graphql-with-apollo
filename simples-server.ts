@@ -1,3 +1,5 @@
+//Schema first
+
 import { ApolloServer, gql } from 'apollo-server';
 import { randomUUID } from 'node:crypto';
 
