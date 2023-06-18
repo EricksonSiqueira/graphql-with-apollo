@@ -24,6 +24,7 @@ const server = new ApolloServer({
       helloWorld: () => {
         return `Hello world!`;
       },
+      users: () => users,
     },
     Mutation: {
       createUser: (parent, args, context: User) => {
